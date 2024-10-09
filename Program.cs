@@ -36,7 +36,7 @@
         {
             int val = 0;
             bool validerat = false;
-            int[] giltigaVal = { 1, 2, 3 };  // Array över tillåtna menyval
+            int[] giltigaVal = { 1, 2, 3, 4 };  // Array över tillåtna menyval
 
             while (!validerat)
             {
@@ -70,7 +70,7 @@
                     // Om inget matchande alternativ hittades
                     if (!giltigtVal)
                     {
-                        Console.WriteLine("Ogiltigt val. Vänligen ange ett nummer mellan 1 och 3.");
+                        Console.WriteLine("Ogiltigt val. Vänligen ange ett nummer mellan 1 och 4.");
                     }
                 }
                 else

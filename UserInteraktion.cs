@@ -33,7 +33,8 @@
             Console.WriteLine("Välj ett alternativ:");
             Console.WriteLine("1. Lägg till ny bok");
             Console.WriteLine("2. Visa alla böcker");
-            Console.WriteLine("3. Avsluta");
+            Console.WriteLine("3. Ta bort en bok");
+            Console.WriteLine("4. Avsluta");
         }
 
         // Hantera användarens val
@@ -48,6 +49,9 @@
                     VisaAllaBöcker();
                     break;
                 case 3:
+                    TaBortBok();
+                    break;
+                case 4:
                     Console.WriteLine("Avslutar programmet...");
                     break;
                 default:
@@ -93,6 +97,33 @@
             }
             Console.ReadLine();  // Pausar så användaren kan läsa
         }
-    }
 
+        private void TaBortBok()
+        {
+            Console.WriteLine("Ange titel som du vill ta bort");
+            string titelAttTaBort = Console.ReadLine()!;
+
+            Bok? bokAttTaBort = null;
+
+            foreach (var bok in bokLista)
+            {
+                if (bok.Titel.Equals(titelAttTaBort, StringComparison.OrdinalIgnoreCase))
+                { 
+                    bokAttTaBort = bok;
+                    break;
+                }
+            }
+
+            if (bokAttTaBort != null)
+            {
+                bokLista.Remove(bokAttTaBort);
+                Console.WriteLine($"Boken {titelAttTaBort} har tagits bort.");
+            }
+            else 
+            {
+                Console.WriteLine($"Ingen bok med titel {titelAttTaBort} har hittats");
+            }
+            Console.ReadLine();
+        }
+    }
 }
