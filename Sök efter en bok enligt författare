@@ -1,0 +1,55 @@
+namespace GroupProjectBiblotek
+
+public class sökefterbokenligtförfatare
+ // Egenskaper för boken
+   {
+
+public string  titel { get; set; }  
+public string förfatare { get; set; } 
+public string ISBN { get; set; } 
+
+{
+
+Titel = titel;
+Förfatare = förfatare; 
+ISBN= isbn;
+
+}
+
+public void VisaBokInformation()
+{
+ Console.WriteLine($"titel: {titel}, förfatare {förfatare}, ISBN {ISBN}");
+}
+
+class bibliotek
+{
+private List <Book> books = list <Book>();
+
+public void LäggTillBok(string titel, string förfatare, string isbn)
+{
+Books.Add(new Book(titel,förfatare,isbn));
+Console.Writeline("Boken har lagts till.");
+}
+
+public void searchByAuthor(string author)
+{
+
+foreach (var book in books.FindAll(b => b.Author == Author))
+{
+ Book.DisplayBookInfo();
+}
+
+public void DisplayAllBooks()
+{
+foreach (var book in books)
+{
+Book.DisplayBookInfo();
+}
+
+}
+
+
+}
+
+}
+
