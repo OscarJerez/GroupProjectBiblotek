@@ -14,7 +14,7 @@
                 // Om inloggning lyckades, kör menyn
                 int val = 0;
 
-                while (val != 3)  // Programmet fortsätter tills användaren väljer att avsluta
+                while (val != 4)  // Programmet fortsätter tills användaren väljer att avsluta
                 {
                     userInteraktion.VisaMeny();
                     val = LäsMenyVal();  // Anropar en metod för att läsa användarens menyval
