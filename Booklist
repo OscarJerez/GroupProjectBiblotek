@@ -1,0 +1,64 @@
+namespace GroupProjectBiblotek 
+{
+    public class Booklista
+    { 
+        {
+             public List<Book> books = new List<Book>
+            {
+                new Book ("Harry Potter and the Goblet of Fire", "J.K. Rowling", "Fantasy", "978-0439139601");
+                new Book ("Harry Potter and the Prisoner of Azkaban", "J.K. Rowling", "Fantasy", "978-0439136358");
+            }
+
+            public void VisaAllaBöcker () 
+            {
+
+                if (books.Count == 0) 
+                {
+                     Console.WriteLine($"Du har inga böcker i din boklista")
+                } else 
+                {
+                     Console.WriteLine("Visar din boklista ...");
+                     foreach (var bok in booklista) 
+                        {
+                            book.VisaInfo();
+                        }
+                }
+               
+            }
+            
+            public void HittaDinBokIListan (string titel) 
+            {
+                Console.Write("Ange boktitel:  ");
+                string userInput = Console.ReadLine();
+
+                bool HittadIlistan = false 
+
+                foreach (var bok in books) 
+                {
+                    if (userInput == book.titel) 
+                    {
+                        Console.WriteLine($"{book.VisaInfo()} finns i din boklista!");
+
+                        hittadIListan = true;
+                        break;
+                    }
+                }
+                if (!HittadIlistan) 
+                {
+                    Console.WriteLine($"{userInput} finns inte i din boklista.");
+                }
+            }
+
+
+          
+
+
+
+            
+    
+        }
+    }
+
+
+    
+}
