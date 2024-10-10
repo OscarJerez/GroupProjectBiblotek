@@ -4,8 +4,7 @@
        public class UserInteraktion
     {
         Library library = new Library();
-       https://github.com/OscarJerez/GroupProjectBiblotek/pull/8/conflict?name=UserInteraktion.cs&ancestor_oid=ca1b364c5e7f77797ec86c49a3e6ce0d10331a0e&base_oid=258a479f008de885591eee1315a725d7e6a2eed2&head_oid=a9cb56f0b7c50286aa81d140cfd855c889ffc02d
-
+     
         // Metod för att logga in användaren
         public bool Login()
         {
