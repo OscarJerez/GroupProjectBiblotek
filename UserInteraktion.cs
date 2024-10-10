@@ -3,7 +3,8 @@
 {
        public class UserInteraktion
     {
-        private List<Bok> bokLista = new List<Bok>();
+        Library library = new Library();
+       https://github.com/OscarJerez/GroupProjectBiblotek/pull/8/conflict?name=UserInteraktion.cs&ancestor_oid=ca1b364c5e7f77797ec86c49a3e6ce0d10331a0e&base_oid=258a479f008de885591eee1315a725d7e6a2eed2&head_oid=a9cb56f0b7c50286aa81d140cfd855c889ffc02d
 
         // Metod för att logga in användaren
         public bool Login()
@@ -34,7 +35,10 @@
             Console.WriteLine("1. Lägg till ny bok");
             Console.WriteLine("2. Visa alla böcker");
             Console.WriteLine("3. Ta bort en bok");
-            Console.WriteLine("4. Avsluta");
+            Console.WriteLine("4. Låna en bok");
+            Console.WriteLine("5. Lämna tillbaka en bok");
+            Console.WriteLine("6. avsluta");
+
         }
 
         // Hantera användarens val
@@ -49,9 +53,18 @@
                     VisaAllaBöcker();
                     break;
                 case 3:
+
                     TaBortBok();
                     break;
                 case 4:
+
+                    library.CheckOutBook();
+                    break;
+                case 5:
+                    library.ReturnBook();
+                    break;
+                case 6:
+
                     Console.WriteLine("Avslutar programmet...");
                     break;
                 default:
@@ -76,7 +89,7 @@
             string genre = Console.ReadLine()!;
 
             Bok nyBok = new Bok(titel, författare, isbn, genre);
-            bokLista.Add(nyBok);
+            library.bokLista.Add(nyBok);
             Console.WriteLine("Boken har lagts till.");
             Console.ReadLine();  // Pausar så användaren kan läsa meddelandet
         }
@@ -84,13 +97,13 @@
         // Visa alla böcker
         private void VisaAllaBöcker()
         {
-            if (bokLista.Count == 0)
+            if (library.bokLista.Count == 0)
             {
                 Console.WriteLine("Ingen bok finns i listan.");
             }
             else
             {
-                foreach (var bok in bokLista)
+                foreach (var bok in library.bokLista)
                 {
                     bok.VisaInfo();
                 }
