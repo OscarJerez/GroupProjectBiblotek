@@ -15,8 +15,6 @@
                 int val = 0;
 
 
-                while (val != 4)  // Programmet fortsätter tills användaren väljer att avsluta
-
                 while (val != 6)  // Programmet fortsätter tills användaren väljer att avsluta
 
                 {
