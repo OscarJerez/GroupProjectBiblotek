@@ -109,7 +109,8 @@ namespace GroupProjectBiblotek
             {
                 if (userInput == bok.Titel)
                 {
-                    Console.Write($"Boken finns i biblioteket:");
+                    Console.WriteLine();
+                    Console.WriteLine($"Boken finns i biblioteket:");
                     bok.VisaInfo();
                     Console.WriteLine("----------------------------------------------");
                     Console.WriteLine("Klicka enter för att komma tillbaks till menyn");
@@ -121,6 +122,7 @@ namespace GroupProjectBiblotek
 
             if (!finnsILista) // Ifall boken inte hittades
             {
+                Console.WriteLine();
                 Console.WriteLine($"{userInput} finns inte i vårat bibliotek");
                 Console.WriteLine("----------------------------------------------");
                 Console.WriteLine("Klicka enter för att komma tillbaks till menyn");

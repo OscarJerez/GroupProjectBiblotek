@@ -59,12 +59,12 @@
                     library.ReturnBook();
                     break;
                 case 5:
-                   library.sökEfterBokIListan
+                    library.SökEfterBokIListan();
                      break;
                  case 6: 
                   TaBortBok();
                   break;
-                case 7
+                case 7:
                   Console.WriteLine("Avsluta program");
                   break;
                 default:
