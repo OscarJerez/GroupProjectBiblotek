@@ -78,7 +78,7 @@
                     // Om inget matchande alternativ hittades
                     if (!giltigtVal)
                     {
-                        Console.WriteLine("Ogiltigt val. Vänligen ange ett nummer mellan 1 och 3.");
+                        Console.WriteLine("Ogiltigt val. Vänligen ange ett nummer mellan 1 och 6.");
                     }
                 }
                 else
