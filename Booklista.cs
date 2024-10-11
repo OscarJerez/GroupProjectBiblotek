@@ -1,6 +1,6 @@
 public class BookFinder
 {
-    private Library library;
+    Library library = new Library();
 
     public BookFinder(Library library)
     {
