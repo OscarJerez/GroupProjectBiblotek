@@ -36,7 +36,8 @@
             Console.WriteLine("2. Visa alla böcker");
             Console.WriteLine("3. Låna en bok");
             Console.WriteLine("4. Lämna tillbaka en bok");
-            Console.WriteLine("5. avsluta");
+            Console.WriteLine("5. Ta bort en bok");
+            Console.WriteLine("6. Avsluta");
         }
 
         // Hantera användarens val
@@ -57,6 +58,9 @@
                     library.ReturnBook();
                     break;
                 case 5:
+                    TaBortBok(); 
+                    break;
+                case 6:
                     Console.WriteLine("Avslutar programmet...");
                     break;
                 default:
@@ -102,6 +106,40 @@
             }
             Console.ReadLine();  // Pausar så användaren kan läsa
         }
+
+        private void TaBortBok()
+        {
+            Console.WriteLine("Ange titeln på boken du vill ta bort:");
+            string titelAttTaBort = Console.ReadLine()!;
+
+            Bok? bokAttTaBort = null;
+
+            // Leta efter boken i listan
+            foreach (var bok in library.bokLista)  // Ensure bokLista is accessed correctly
+            {
+                if (bok.Titel.Equals(titelAttTaBort, StringComparison.OrdinalIgnoreCase))
+                {
+                    bokAttTaBort = bok;
+                    break;
+                }
+            }
+
+            // Om boken hittades, ta bort den
+            if (bokAttTaBort != null)
+            {
+                library.bokLista.Remove(bokAttTaBort);  // Access the correct list
+                Console.WriteLine($"Boken '{titelAttTaBort}' har tagits bort.");
+            }
+            else
+            {
+                Console.WriteLine($"Ingen bok med titeln '{titelAttTaBort}' hittades.");
+            }
+
+            Console.WriteLine("Tryck på valfri tangent för att gå tillbaka till menyn.");
+            Console.ReadLine();  // Pauses the screen so the user can read the message
+        }
+
+
     }
 
 }
