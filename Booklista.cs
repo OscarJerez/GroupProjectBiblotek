@@ -19,12 +19,12 @@ public class BookFinder
             if (userInput == bok.Titel)
             {
                 Console.WriteLine($"{bok.VisaInfo()} finns i din boklista!");
-                hittadILista = true;
+                finnsIListaILista = true;
                 break;
             }
         }
 
-        if (!hittadILista) // Ifall boken inte hittades
+        if (!finnsILista) // Ifall boken inte hittades
         {
             Console.WriteLine($"{userInput} finns inte i din boklista.");
         }
