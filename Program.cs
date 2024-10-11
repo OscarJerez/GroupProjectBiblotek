@@ -14,7 +14,7 @@
                 // Om inloggning lyckades, kör menyn
                 int val = 0;
 
-                while (val != 6)  // Programmet fortsätter tills användaren väljer att avsluta
+                while (val != 7)  // Programmet fortsätter tills användaren väljer att avsluta
                 {
                     
                     userInteraktion.VisaMeny();
@@ -38,7 +38,7 @@
           
             int val = 0;
             bool validerat = false;
-            int[] giltigaVal = { 1, 2, 3, 4, 5, 6 };  // Array över tillåtna menyval
+            int[] giltigaVal = { 1, 2, 3, 4, 5, 6, 7 };  // Array över tillåtna menyval
 
             while (!validerat)
             {
