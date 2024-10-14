@@ -11,7 +11,7 @@
         {
             const string korrectKod = "1234"; // Fördefinierad kod
 
-            Console.WriteLine("Välkommen till bibliotek G4");
+            Console.WriteLine("Välkommen till bibliotek G4\n");
             Console.WriteLine("Ange din 4 siffriga kod för att logga in:");
             string angivenKod = Console.ReadLine()!;
 
@@ -31,15 +31,15 @@
         public void VisaMeny()
         {
             Console.Clear();
-            Console.WriteLine("Välj ett alternativ:");
+            Console.WriteLine("Välj ett alternativ:\n");
             Console.WriteLine("1. Lägg till ny bok");
             Console.WriteLine("2. Visa alla böcker");
             Console.WriteLine("3. Låna en bok");
             Console.WriteLine("4. Lämna tillbaka en bok");
             Console.WriteLine("5. Sök efter en bok i biblioteket");
-            Console.WriteLine("6. Ta bort en bok");
-            Console.WriteLine("7. Sök bok enligt författare");
-            Console.WriteLine("8. avsluta");
+            Console.WriteLine("6. Sök bok enligt författare");
+            Console.WriteLine("7. Ta bort en bok");
+            Console.WriteLine("8. Avsluta");
         }
 
         // Hantera användarens val
@@ -48,10 +48,10 @@
             switch (val)
             {
                 case 1:
-                    LäggaTillBok();
+                    library.LäggaTillBok();
                     break;
                 case 2:
-                    VisaAllaBöcker();
+                    library.VisaAllaBöcker();
                     break;
                 case 3:
                     library.CheckOutBook();
@@ -63,11 +63,10 @@
                     library.SökEfterBokIListan();
                     break;
                 case 6:
-                    TaBortBok();
+                    library.AuthorUserInput();
                     break;
                 case 7:
-                   string userinput = AuthorUserInput();
-                    library.searchByAuthor(userinput);
+                    library.TaBortBok();
                     break;
                 case 8:
                     Console.WriteLine("Avsluta program");
@@ -77,86 +76,20 @@
                     break;
             }
         }
-
-        // Lägg till en ny bok
-        private void LäggaTillBok()
-        {
-            Console.WriteLine("Ange boktitel:");
-            string titel = Console.ReadLine()!;
-
-            Console.WriteLine("Ange författare:");
-            string författare = Console.ReadLine()!;
-
-            Console.WriteLine("Ange ISBN:");
-            string isbn = Console.ReadLine()!;
-
-            Console.WriteLine("Ange genre:");
-            string genre = Console.ReadLine()!;
-
-            Bok nyBok = new Bok(titel, författare, isbn, genre);
-            library.bokLista.Add(nyBok);
-            Console.WriteLine("Boken har lagts till.");
-            Console.ReadLine();  // Pausar så användaren kan läsa meddelandet
-        }
-
-        // Visa alla böcker
-        private void VisaAllaBöcker()
-        {
-            if (library.bokLista.Count == 0)
-            {
-                Console.WriteLine("Ingen bok finns i listan.");
-            }
-            else
-            {
-                foreach (var bok in library.bokLista)
-                {
-                    bok.VisaInfo();
-                }
-            }
-            Console.ReadLine();  // Pausar så användaren kan läsa
-        }
-
-        private void TaBortBok()
-        {
-            Console.WriteLine("Ange titeln på boken du vill ta bort:");
-            string titelAttTaBort = Console.ReadLine()!;
-
-            Bok? bokAttTaBort = null;
-
-            // Leta efter boken i listan
-            foreach (var bok in library.bokLista)  // Ensure bokLista is accessed correctly
-            {
-                if (bok.Titel.Equals(titelAttTaBort, StringComparison.OrdinalIgnoreCase))
-                {
-                    bokAttTaBort = bok;
-                    break;
-                }
-            }
-
-            // Om boken hittades, ta bort den
-            if (bokAttTaBort != null)
-            {
-                library.bokLista.Remove(bokAttTaBort);  // Access the correct list
-                Console.WriteLine($"Boken '{titelAttTaBort}' har tagits bort.");
-            }
-            else
-            {
-                Console.WriteLine($"Ingen bok med titeln '{titelAttTaBort}' hittades.");
-            }
-
-            Console.WriteLine("Tryck på valfri tangent för att gå tillbaka till menyn.");
-            Console.ReadLine();  // Pauses the screen so the user can read the message
-        }
-        
-         public string AuthorUserInput()
-        {
-            Console.WriteLine("Ange författare");
-            string userinput = Console.ReadLine();
-            return userinput;
-        }
-        
        
 
     }
+    public static class UserInputHelper
+    {
+        public static string TakeUserInfo(string checkOutOrReturn)
+        {
+            string userInput;
 
+            Console.WriteLine($"Vilken bok vill du {checkOutOrReturn}?");
+            Console.WriteLine("(Skriv titel)");
+            userInput = Console.ReadLine()!;
+
+            return userInput;
+        }
+    }
 }

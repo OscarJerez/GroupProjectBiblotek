@@ -21,7 +21,7 @@
 
         public void VisaInfo()
         {
-            Console.WriteLine($"Titel: {Titel}, Författare: {Författare}, ISBN: {ISBN}, Genre: {Genre}");
+            Console.WriteLine($"\nTitel: {Titel}, Författare: {Författare}, ISBN: {ISBN}, Genre: {Genre}");
         }
     }
 }
