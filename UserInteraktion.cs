@@ -1,10 +1,10 @@
 ﻿namespace GroupProjectBiblotek
 
 {
-       public class UserInteraktion
+    public class UserInteraktion
     {
         Library library = new Library();
-        
+
 
         // Metod för att logga in användaren
         public bool Login()
@@ -38,7 +38,8 @@
             Console.WriteLine("4. Lämna tillbaka en bok");
             Console.WriteLine("5. Sök efter en bok i biblioteket");
             Console.WriteLine("6. Ta bort en bok");
-            Console.WriteLine("7. avsluta");
+            Console.WriteLine("7. Sök bok enligt författare");
+            Console.WriteLine("8. avsluta");
         }
 
         // Hantera användarens val
@@ -60,16 +61,20 @@
                     break;
                 case 5:
                     library.SökEfterBokIListan();
-                     break;
-                 case 6: 
-                  TaBortBok();
-                  break;
+                    break;
+                case 6:
+                    TaBortBok();
+                    break;
                 case 7:
-                  Console.WriteLine("Avsluta program");
-                  break;
+                   string userinput = AuthorUserInput();
+                    library.searchByAuthor(userinput);
+                    break;
+                case 8:
+                    Console.WriteLine("Avsluta program");
+                    break;
                 default:
-                Console.WriteLine("Ogiltigt val, försök igen.");
-                 break;
+                    Console.WriteLine("Ogiltigt val, försök igen.");
+                    break;
             }
         }
 
@@ -142,7 +147,15 @@
             Console.WriteLine("Tryck på valfri tangent för att gå tillbaka till menyn.");
             Console.ReadLine();  // Pauses the screen so the user can read the message
         }
-
+        
+         public string AuthorUserInput()
+        {
+            Console.WriteLine("Ange författare");
+            string userinput = Console.ReadLine();
+            return userinput;
+        }
+        
+       
 
     }
 
