@@ -98,6 +98,38 @@ namespace GroupProjectBiblotek
             }
 
         }
+        public void SökEfterBokIListan()
+        {
+            Console.Write("Ange boktitel:  "); //Söka efter bok
+            string userInput = Console.ReadLine();
+
+            bool finnsILista = false;
+
+            foreach (var bok in bokLista) // Använd bokLista från Library klassen
+            {
+                if (userInput == bok.Titel)
+                {
+                    Console.WriteLine();
+                    Console.WriteLine($"Boken finns i biblioteket:");
+                    bok.VisaInfo();
+                    Console.WriteLine("----------------------------------------------");
+                    Console.WriteLine("Klicka enter för att komma tillbaks till menyn");
+                    Console.ReadLine();
+                    finnsILista = true;
+                    break;
+                }
+            }
+
+            if (!finnsILista) // Ifall boken inte hittades
+            {
+                Console.WriteLine();
+                Console.WriteLine($"{userInput} finns inte i vårat bibliotek");
+                Console.WriteLine("----------------------------------------------");
+                Console.WriteLine("Klicka enter för att komma tillbaks till menyn");
+                Console.ReadLine();
+
+            }
+        }
 
         public string TakeUserInfo(string checkOutOrReturn) 
         {

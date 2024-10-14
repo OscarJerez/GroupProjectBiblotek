@@ -4,7 +4,7 @@
        public class UserInteraktion
     {
         Library library = new Library();
-       
+        
 
         // Metod för att logga in användaren
         public bool Login()
@@ -36,8 +36,9 @@
             Console.WriteLine("2. Visa alla böcker");
             Console.WriteLine("3. Låna en bok");
             Console.WriteLine("4. Lämna tillbaka en bok");
-            Console.WriteLine("5. Ta bort en bok");
-            Console.WriteLine("6. Avsluta");
+            Console.WriteLine("5. Sök efter en bok i biblioteket");
+            Console.WriteLine("6. Ta bort en bok");
+            Console.WriteLine("7. avsluta");
         }
 
         // Hantera användarens val
@@ -58,14 +59,17 @@
                     library.ReturnBook();
                     break;
                 case 5:
-                    TaBortBok(); 
-                    break;
-                case 6:
-                    Console.WriteLine("Avslutar programmet...");
-                    break;
+                    library.SökEfterBokIListan();
+                     break;
+                 case 6: 
+                  TaBortBok();
+                  break;
+                case 7:
+                  Console.WriteLine("Avsluta program");
+                  break;
                 default:
-                    Console.WriteLine("Ogiltigt val, försök igen.");
-                    break;
+                Console.WriteLine("Ogiltigt val, försök igen.");
+                 break;
             }
         }
 
