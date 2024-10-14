@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Reflection.Metadata.BlobBuilder;
 
 namespace GroupProjectBiblotek
 {
@@ -141,6 +142,44 @@ namespace GroupProjectBiblotek
 
                 return userInput;
         }
+        public void searchByAuthor(string author)
+        {
+            bool authorexict = false;
 
+            foreach (var book in bokLista)
+
+            {
+
+              
+                
+                if (book.Författare == author)
+                
+                {
+                    authorexict = true;
+                    book.VisaInfo();
+                    Console.ReadLine();
+                }
+
+                
+                
+
+
+            }
+             if ( authorexict == false)
+
+
+
+            {
+                Console.WriteLine($"biblioteket har inga böcker enligt {author}.");
+                Console.ReadLine();
+
+            }
+
+
+
+
+
+
+        }
     }   
 }
