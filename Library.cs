@@ -10,6 +10,8 @@ namespace GroupProjectBiblotek
     public class Library
     {
         public List<Bok> bokLista = new List<Bok>();
+        private object library;
+
         public void CheckOutBook()
         {
 
@@ -97,6 +99,38 @@ namespace GroupProjectBiblotek
                 }
             }
 
+        }
+
+        public void TaBortBok()
+        {
+            Console.WriteLine("Ange titeln på boken du vill ta bort:");
+            string titelAttTaBort = Console.ReadLine()!;
+
+            Bok? bokAttTaBort = null;
+
+            // Leta efter boken i listan
+            foreach (var bok in bokLista)  // Ensure bokLista is accessed correctly
+            {
+                if (bok.Titel.Equals(titelAttTaBort, StringComparison.OrdinalIgnoreCase))
+                {
+                    bokAttTaBort = bok;
+                    break;
+                }
+            }
+
+            // Om boken hittades, ta bort den
+            if (bokAttTaBort != null)
+            {
+                bokLista.Remove(bokAttTaBort);  // Access the correct list
+                Console.WriteLine($"Boken '{titelAttTaBort}' har tagits bort.");
+            }
+            else
+            {
+                Console.WriteLine($"Ingen bok med titeln '{titelAttTaBort}' hittades.");
+            }
+
+            Console.WriteLine("Tryck på valfri tangent för att gå tillbaka till menyn.");
+            Console.ReadLine();  // Pauses the screen so the user can read the message
         }
 
         public string TakeUserInfo(string checkOutOrReturn) 
