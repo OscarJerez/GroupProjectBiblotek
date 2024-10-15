@@ -11,18 +11,58 @@ namespace GroupProjectBiblotek
     public class Library
     {
         public List<Bok> bokLista = new List<Bok>();
+
+        // Lägg till en ny bok
+        public void LäggaTillBok()
+        {
+            Console.WriteLine("Ange boktitel:");
+            string titel = Console.ReadLine()!;
+
+            Console.WriteLine("Ange författare:");
+            string författare = Console.ReadLine()!;
+
+            Console.WriteLine("Ange ISBN:");
+            string isbn = Console.ReadLine()!;
+
+            Console.WriteLine("Ange genre:");
+            string genre = Console.ReadLine()!;
+
+            Bok nyBok = new Bok(titel, författare, isbn, genre);
+            bokLista.Add(nyBok);
+            Console.WriteLine("\nBoken har lagts till.");
+            Console.WriteLine("\nKlicka enter för att komma tillbaka till menyn");
+            Console.ReadLine();  // Pausar så användaren kan läsa meddelandet
+        }
+        // Visa alla böcker
+        public void VisaAllaBöcker()
+        {
+            if (bokLista.Count == 0)
+            {
+                Console.WriteLine("\nIngen bok finns i listan.");
+                
+            }
+            else
+            {
+                foreach (var bok in bokLista)
+                {
+                    bok.VisaInfo();
+                }
+            }
+            Console.WriteLine("\nKlicka enter för att komma tillbaka till menyn");
+            Console.ReadLine();  // Pausar så användaren kan läsa
+        }
         public void CheckOutBook()
         {
 
             if (bokLista.Count == 0)
             {
-                Console.WriteLine("Det finns inga böcker i biblioteket för tillfället...");
-                Console.WriteLine("Klicka enter för att komma tillbaka till menyn");
+                Console.WriteLine("\nDet finns inga böcker i biblioteket för tillfället...");
+                Console.WriteLine("\nKlicka enter för att komma tillbaka till menyn");
                 Console.ReadLine();
                 return;
             }
 
-            string userInput = TakeUserInfo("checka ut");
+            string userInput = UserInputHelper.TakeUserInfo("checka ut");
 
             foreach (var bok in bokLista)
             {
@@ -32,25 +72,25 @@ namespace GroupProjectBiblotek
                 {
                     if (bok.IsCheckedOut == true)
                     {
-                        Console.WriteLine("boken är tyvärr redan utlånad");
+                        Console.WriteLine("\nBoken är tyvärr redan utlånad");
                         Console.WriteLine("----------------------------------------------");
-                        Console.WriteLine("Klicka enter för att komma tillbaka till menyn");
+                        Console.WriteLine("\nKlicka enter för att komma tillbaka till menyn");
                         Console.ReadLine();
                         return;
                     }
 
                     bok.IsCheckedOut = true;
-                    Console.WriteLine($"Du lånar nu {bok.Titel}");
+                    Console.WriteLine($"\nDu lånar nu {bok.Titel}");
                     Console.WriteLine("----------------------------------------------");
-                    Console.WriteLine("Klicka enter för att komma tillbaka till menyn");
+                    Console.WriteLine("\nKlicka enter för att komma tillbaka till menyn");
                     Console.ReadLine();
                     return;
                 }
                 else if (bok == bokLista[bokLista.Count - 1])
                 {
-                    Console.WriteLine("Boken finns inte i biblioteket" );
+                    Console.WriteLine("\nBoken finns inte i biblioteket" );
                     Console.WriteLine("----------------------------------------------");
-                    Console.WriteLine("Klicka enter för att komma tillbaka till menyn");
+                    Console.WriteLine("\nKlicka enter för att komma tillbaka till menyn");
                     Console.ReadLine();
                     return;
                 }
@@ -62,12 +102,12 @@ namespace GroupProjectBiblotek
            
             if (bokLista.Count == 0)
             {
-                Console.WriteLine("Du kan inte lämna tillbaka en bok då vi tyvärr inte har någora böcker för tillfället");
-                Console.WriteLine("klicka enter för att komma tillbaka till menyn");
+                Console.WriteLine("\nDu kan inte lämna tillbaka en bok då vi tyvärr inte har någora böcker för tillfället");
+                Console.WriteLine("\nklicka enter för att komma tillbaka till menyn");
                 Console.ReadLine();
                 return;
             }
-            string userInput = TakeUserInfo("returnera");
+            string userInput = UserInputHelper.TakeUserInfo("returnera");
 
             foreach (var bok in bokLista)
             {
@@ -75,25 +115,25 @@ namespace GroupProjectBiblotek
                 {
                     if (bok.IsCheckedOut == false)
                     {
-                        Console.WriteLine("du kan inte lämna tillbaka en bok som inte är utlånad...");
+                        Console.WriteLine("\nDu kan inte lämna tillbaka en bok som inte är utlånad...");
                         Console.WriteLine("---------------------------------------------------------");
-                        Console.WriteLine("klicka enter för att komma tillbaka till menyn");
+                        Console.WriteLine("\nKlicka enter för att komma tillbaka till menyn");
                         Console.ReadLine();
                         break;
                     }
 
                     bok.IsCheckedOut = false;
-                    Console.WriteLine($"Inlämning av {bok.Titel} är registrerad");
+                    Console.WriteLine($"\nInlämning av {bok.Titel} är registrerad");
                     Console.WriteLine("----------------------------------------------");
-                    Console.WriteLine("klicka enter för att komma tillbaka till menyn");
+                    Console.WriteLine("\nKlicka enter för att komma tillbaka till menyn");
                     Console.ReadLine();
                 }
 
                 else if (bok == bokLista[bokLista.Count - 1])
                 {
-                    Console.WriteLine("Boken du försöker lämna tillbaka tillhör inte detta bibliotek...");
+                    Console.WriteLine("\nBoken du försöker lämna tillbaka tillhör inte detta bibliotek...");
                     Console.WriteLine("-----------------------------------------------------------------");
-                    Console.WriteLine("klicka enter för att komma tillbaka till menyn");
+                    Console.WriteLine("\nKlicka enter för att komma tillbaka till menyn");
                     Console.ReadLine();
                 }
             }
@@ -102,7 +142,7 @@ namespace GroupProjectBiblotek
         public void SökEfterBokIListan()
         {
             Console.Write("Ange boktitel:  "); //Söka efter bok
-            string userInput = Console.ReadLine();
+            string userInput = Console.ReadLine()!;
 
             bool finnsILista = false;
 
@@ -111,10 +151,10 @@ namespace GroupProjectBiblotek
                 if (userInput == bok.Titel)
                 {
                     Console.WriteLine();
-                    Console.WriteLine($"Boken finns i biblioteket:");
+                    Console.WriteLine($"\nBoken finns i biblioteket:");
                     bok.VisaInfo();
                     Console.WriteLine("----------------------------------------------");
-                    Console.WriteLine("Klicka enter för att komma tillbaks till menyn");
+                    Console.WriteLine("\nKlicka enter för att komma tillbaks till menyn");
                     Console.ReadLine();
                     finnsILista = true;
                     break;
@@ -124,62 +164,63 @@ namespace GroupProjectBiblotek
             if (!finnsILista) // Ifall boken inte hittades
             {
                 Console.WriteLine();
-                Console.WriteLine($"{userInput} finns inte i vårat bibliotek");
+                Console.WriteLine($"\n{userInput} finns inte i vårat bibliotek");
                 Console.WriteLine("----------------------------------------------");
-                Console.WriteLine("Klicka enter för att komma tillbaks till menyn");
+                Console.WriteLine("\nKlicka enter för att komma tillbaks till menyn");
                 Console.ReadLine();
 
             }
         }
-
-        public string TakeUserInfo(string checkOutOrReturn) 
+       
+        public void TaBortBok()
         {
-                string userInput;
+            Console.WriteLine("\nAnge titeln på boken du vill ta bort:");
+            string titelAttTaBort = Console.ReadLine()!;
 
-                Console.WriteLine($"Vilken bok vill du {checkOutOrReturn}");
-                Console.WriteLine("(Skriv titel)");
-                userInput = Console.ReadLine();
+            Bok? bokAttTaBort = null;
 
-                return userInput;
+            // Leta efter boken i listan
+            foreach (var bok in bokLista)  // Ensure bokLista is accessed correctly
+            {
+                if (bok.Titel.Equals(titelAttTaBort, StringComparison.OrdinalIgnoreCase))
+                {
+                    bokAttTaBort = bok;
+                    break;
+                }
+                // Om boken hittades, ta bort den
+                if (bokAttTaBort != null)
+                {
+                    bokLista.Remove(bokAttTaBort);  // Access the correct list
+                    Console.WriteLine($"\nBoken '{titelAttTaBort}' har tagits bort.");
+                }
+                else
+                {
+                    Console.WriteLine($"\nIngen bok med titeln '{titelAttTaBort}' hittades.");
+                }
+
+                Console.WriteLine("\nTryck på valfri tangent för att gå tillbaka till menyn.");
+                Console.ReadLine();  // Pauses the screen so the user can read the message
+            }
         }
-        public void searchByAuthor(string author)
+
+        public void SearchByAuthor(string author)
         {
             bool authorexict = false;
-
             foreach (var book in bokLista)
-
             {
-
-              
-                
-                if (book.Författare == author)
-                
+                if (book.Författare == author)               
                 {
                     authorexict = true;
                     book.VisaInfo();
-                    Console.ReadLine();
                 }
-
-                
-                
-
-
             }
              if ( authorexict == false)
 
-
-
-            {
-                Console.WriteLine($"biblioteket har inga böcker enligt {author}.");
-                Console.ReadLine();
-
-            }
-
-
-
-
-
-
+                {
+                Console.WriteLine($"\nbiblioteket har inga böcker av {author}.");
+                
+                }
+            Console.ReadLine();
         }
     }   
 }
