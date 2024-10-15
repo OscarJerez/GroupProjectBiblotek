@@ -171,12 +171,7 @@ namespace GroupProjectBiblotek
 
             }
         }
-        public string AuthorUserInput()
-        {
-            Console.WriteLine("\nAnge författare");
-            string userinput = Console.ReadLine()!;
-            return userinput;
-        }
+       
         public void TaBortBok()
         {
             Console.WriteLine("\nAnge titeln på boken du vill ta bort:");
@@ -208,28 +203,24 @@ namespace GroupProjectBiblotek
             }
         }
 
-        public void searchByAuthor(string author)
+        public void SearchByAuthor(string author)
         {
             bool authorexict = false;
-
             foreach (var book in bokLista)
-
-            {            
-               
-                if (book.Författare == author)
-                
+            {
+                if (book.Författare == author)               
                 {
                     authorexict = true;
                     book.VisaInfo();
-                    Console.ReadLine();
                 }
             }
              if ( authorexict == false)
 
                 {
-                Console.WriteLine($"\nbiblioteket har inga böcker enligt {author}.");
-                Console.ReadLine();
+                Console.WriteLine($"\nbiblioteket har inga böcker av {author}.");
+                
                 }
+            Console.ReadLine();
         }
     }   
 }

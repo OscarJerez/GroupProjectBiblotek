@@ -63,7 +63,8 @@
                     library.SökEfterBokIListan();
                     break;
                 case 6:
-                    library.AuthorUserInput();
+                    string userInput = UserInputHelper.AuthorUserInput();
+                    library.SearchByAuthor(userInput);
                     break;
                 case 7:
                     library.TaBortBok();
@@ -90,6 +91,13 @@
             userInput = Console.ReadLine()!;
 
             return userInput;
+        }
+
+        public static string AuthorUserInput()
+        {
+            Console.WriteLine("\nAnge författare");
+            string userinput = Console.ReadLine()!;
+            return userinput;
         }
     }
 }
