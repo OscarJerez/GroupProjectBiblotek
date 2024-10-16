@@ -174,33 +174,44 @@ namespace GroupProjectBiblotek
        
         public void TaBortBok()
         {
-            Console.WriteLine("\nAnge titeln på boken du vill ta bort:");
-            string titelAttTaBort = Console.ReadLine()!;
+            Console.WriteLine();
 
-            Bok? bokAttTaBort = null;
-
-            // Leta efter boken i listan
-            foreach (var bok in bokLista)  // Ensure bokLista is accessed correctly
+            if (bokLista.Count > 0)
             {
-                if (bok.Titel.Equals(titelAttTaBort, StringComparison.OrdinalIgnoreCase))
+                Console.WriteLine("\nAnge titeln på boken du vill ta bort:");
+                string titelAttTaBort = Console.ReadLine()!;
+
+                Bok? bokAttTaBort = null;
+
+                // Leta efter boken i listan
+                foreach (var bok in bokLista)  // Ensure bokLista is accessed correctly
                 {
-                    bokAttTaBort = bok;
-                    break;
+                    if (bok.Titel.Equals(titelAttTaBort, StringComparison.OrdinalIgnoreCase))
+                    {
+                        bokAttTaBort = bok;
+                        break;
+                    }  
                 }
+
                 // Om boken hittades, ta bort den
                 if (bokAttTaBort != null)
                 {
                     bokLista.Remove(bokAttTaBort);  // Access the correct list
                     Console.WriteLine($"\nBoken '{titelAttTaBort}' har tagits bort.");
+                   
                 }
                 else
                 {
                     Console.WriteLine($"\nIngen bok med titeln '{titelAttTaBort}' hittades.");
                 }
-
-                Console.WriteLine("\nTryck på valfri tangent för att gå tillbaka till menyn.");
-                Console.ReadLine();  // Pauses the screen so the user can read the message
             }
+            else
+            {
+                Console.WriteLine("Du kan inte ta bort någon bok då det inte finns några böcker i biblioteket för tillfället");
+            }
+            Console.WriteLine("\n---------------------------------------------------------");
+            Console.WriteLine("Tryck på valfri tangent för att gå tillbaka till menyn.");
+            Console.ReadLine();
         }
 
         public void SearchByAuthor(string author)
@@ -220,6 +231,8 @@ namespace GroupProjectBiblotek
                 Console.WriteLine($"\nbiblioteket har inga böcker av {author}.");
                 
                 }
+            Console.WriteLine("\n---------------------------------------------------------");
+            Console.WriteLine("Tryck på valfri tangent för att gå tillbaka till menyn.");
             Console.ReadLine();
         }
     }   
